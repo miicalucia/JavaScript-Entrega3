@@ -16,6 +16,13 @@ span {
     color: #515151;
 }
 
+button {
+    background-color: white;
+    border: 0px;
+    padding-left: 8px;
+    color: #515151;
+}
+
 table {
     width: 100%;
 }
