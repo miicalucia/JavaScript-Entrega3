@@ -12,6 +12,10 @@ h1 {
     margin: 16px;
 }
 
+span {
+    color: #515151;
+}
+
 table {
     width: 100%;
 }
