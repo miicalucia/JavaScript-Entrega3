@@ -22,32 +22,3 @@ button {
     padding-left: 8px;
     color: #515151;
 }
-
-table {
-    width: 100%;
-}
-
-h2 {
-    height: 100px;
-    border: 1px solid #987284;
-    font-size: 26px;
-    font-weight: 800;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dia {
-    border: 1px solid #987284;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-td {
-    width: 100px;
-    height: 100px;
-    border: 1px solid #987284;
-    font-size: 16px;
-    font-weight: 300;
-    padding: 8px;
-}
