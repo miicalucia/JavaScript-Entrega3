@@ -28,10 +28,22 @@
         </button>
     </h1>
 
-    <form id="formulario">
-        <input type="text" name="" id="nombreUsuario">
-        <input type="email" name="" id="mailUsuario">
+    <form class="login-form" id="login-formulario" >
+        <h2>Log in</h2>
+        <label for="">Ingrese su nombre, un nombre de usuario y una contraseña válida</label>
+        <input type="text" placeholder="Nombre completo" name="nombre" id="nombreInput" required>
+        <input type="text" placeholder="Usuario" name="usuario" id="usuarioInput" required>
+        <input type="password" placeholder="Contraseña" name="password" id="passwordInput" required>
+        <input class="login-form-submitbutton" type="submit" value="Aceptar " id="botonRegistrar" onclick="mostrarBienvenido()">
     </form>
+
+    <div id="bienvenido" style="display:none">
+        <p>Bienvenido</p>
+    </div>
+
+    <footer>
+        <p>Página web creada por Micaela Lucia Gomez</p>
+    </footer>
 
     <script src="js/main.js"></script>
 </body>

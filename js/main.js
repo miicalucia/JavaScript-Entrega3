@@ -8,64 +8,53 @@ class Tarea {
 
 const listaDeTareas = [];
 
-let tareasPendientes = [];
-
 if (localStorage.getItem("tareasPendientes")) {
     tareasPendientes = JSON.parse(localStorage.getItem("tareasPendientes"));
 }
 
-const inputValue = document.getElementById("nombreUsuario");
-inputValue.value = "Ingrese su nombre";
+const formulario = document.getElementById ("login-formulario");
+const nombreInput = document.getElementById("nombreInput");
+const usuarioInput = document.getElementById("usuarioInput");
+const passwordInput = document.getElementById("passwordInput");
+const botonRegistrar = document.getElementById("botonRegistrar");
+const usuarios = [];
 
 
-class Usuario {
-    constructor(nombre, mail) {
-        this.nombre = nombre;
-        this.mail = mail;
-    }
+const verUsuarios = (nuevoUsuario) => {
+    const fichaNuevoUsuario = document.createElement("div");
+    fichaNuevoUsuario.className = "ficha";
+    fichaNuevoUsuario.innerHTML = `
+                                        <h3>${nuevoUsuario.nombre}</h3>
+                                        <p>Username: ${nuevoUsuario.username}</p>`
+
+    contenedorUsuario.appendChild(fichaNuevoUsuario);
 }
 
-const arrayUsuarios = [];
+const mandarDatos = document.getElementById ("login-formulario");
 
-const formulario = document.getElementById("formulario");
+mandarDatos.addEventListener ("submit", (e) => {
+    e.preventDefault()
 
-formulario.addEventListener("submit", (e)=> {
-    e.preventDefault();
+    console.log(e.target.children["nombre"].value);
+    console.log(e.target.children["usuario"].value);
+    console.log(e.target.children["password"].value);
 
-    //Tomamos los datos del formulario:
-    const nombreUsuario = document.getElementById("nombreUsuario");
-    const mailUsuario = document.getElementById("mailUsuario");
-
-    //Creamos el nuevo objeto: 
-    const cliente = new Cliente(nombrecito.value, apellidito.value);
-
-    //Lo metemos al Array:
-    arrayClientes.push(cliente);
-
-    //Verificamos por consola: 
-    console.log(arrayClientes);
-
-    //Reseteamos el formulario: 
-    formularito.reset();
-})
-
-function menu() {
-    let elegirOpcion = "";
-    while (elegirOpcion !== "5") {
-        elegirOpcion = prompt("Selecciona una opción: \n 1) Agregar tarea \n 2) Agregar evento \n 3) Salir");
-        switch (elegirOpcion) {
-            case "1":
-                agregarTarea();
-                break;
-            case "2":
-                agregarEvento();
-                break;
-            case "3":
-                salir();
-                break;
-            default:
-                alert("Vamos de nuevo!");
-                break;
-        }
+    const informacion = e.target.children;
+    const nuevoUsuario = {
+        nombre:informacion["nombre"].value,
+        username:informacion["usuario"].value,
+        password:informacion["password"].value,
     }
-}
+    console.log(nuevoUsuario);
+    usuarios.push(nuevoUsuario);
+
+    const enJson = JSON.stringify(nuevoUsuario);
+    localStorage.setItem("newUser", enJson);
+
+    mandarDatos.reset();
+});
+console.log(usuarios);
+
+function mostrarBienvenido() {
+    document.getElementById("bienvenido").style.display = "block";
+  }
