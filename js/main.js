@@ -5,15 +5,15 @@ class Tarea {
         this.nota = nota;
     }
 }
+const listado = [];
+const listaDeTareas = document.getElementById("listaDeTareas");
 
-const listaDeTareas = [];
 
 if (localStorage.getItem("tareasPendientes")) {
     tareasPendientes = JSON.parse(localStorage.getItem("tareasPendientes"));
 }
 
 const formulario = document.getElementById ("login-formulario");
-const nombreInput = document.getElementById("nombreInput");
 const usuarioInput = document.getElementById("usuarioInput");
 const passwordInput = document.getElementById("passwordInput");
 const botonRegistrar = document.getElementById("botonRegistrar");
@@ -35,13 +35,11 @@ const mandarDatos = document.getElementById ("login-formulario");
 mandarDatos.addEventListener ("submit", (e) => {
     e.preventDefault()
 
-    console.log(e.target.children["nombre"].value);
     console.log(e.target.children["usuario"].value);
     console.log(e.target.children["password"].value);
 
     const informacion = e.target.children;
     const nuevoUsuario = {
-        nombre:informacion["nombre"].value,
         username:informacion["usuario"].value,
         password:informacion["password"].value,
     }
@@ -55,6 +53,22 @@ mandarDatos.addEventListener ("submit", (e) => {
 });
 console.log(usuarios);
 
-function mostrarBienvenido() {
-    document.getElementById("bienvenido").style.display = "block";
-  }
+const crearTarea = () => {
+    const menu = document.createElement("button");
+    menu.innerHTML = `
+                    <input type="text" id="nombreTarea" placeholder="Nombre de la tarea">
+                    <input type="date" id="fechaTarea" placeholder="Fecha de la tarea">
+                    <input type="text" id="notaTarea" placeholder="Detalles de la tarea">
+                    <button id="guardarTarea">Guardar</button>`
+listaDeTareas.appendChild(menu);
+
+let nuevaTarea = new Tarea(`${nombreTarea},${fechaTarea},${notaTarea}`)
+
+const botonTarea = document.getElementById("guardarTarea");
+botonTarea.addEventListener("click", () => {
+    listado.push(nuevaTarea);
+})
+}
+console.log(listaDeTareas);
+
+

@@ -23,22 +23,20 @@
         <span class="material-symbols-outlined">
             checklist
         </span>
-        <button onclick="agregarNuevo()" class="material-symbols-outlined">
+        <button onclick="crearTarea()" class="material-symbols-outlined" id="nuevaTarea">
             add
         </button>
     </h1>
 
     <form class="login-form" id="login-formulario" >
         <h2>Log in</h2>
-        <label for="">Ingrese su nombre, un nombre de usuario y una contraseña válida</label>
-        <input type="text" placeholder="Nombre completo" name="nombre" id="nombreInput" required>
+        <label for="">Ingrese su usuario y contraseña </label>
         <input type="text" placeholder="Usuario" name="usuario" id="usuarioInput" required>
         <input type="password" placeholder="Contraseña" name="password" id="passwordInput" required>
         <input class="login-form-submitbutton" type="submit" value="Aceptar " id="botonRegistrar" onclick="mostrarBienvenido()">
     </form>
 
-    <div id="bienvenido" style="display:none">
-        <p>Bienvenido</p>
+    <div id="listaDeTareas">
     </div>
 
     <footer>
