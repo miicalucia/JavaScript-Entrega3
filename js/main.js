@@ -5,6 +5,7 @@ class Usuario {
     }
 }
 
+/* PARA TP FINAL
 class Tarea {
     constructor(nombre, fecha, notas) {
         this.nombre = nombre;
@@ -12,9 +13,9 @@ class Tarea {
         this.notas = notas;
     }
 }
+const listaDeTareas = [];*/
 
 const listaDeUsuarios = [];
-const listaDeTareas = [];
 
 const formulario = document.getElementById("login-formulario");
 const botonLogIn = document.getElementById("botonLogIn");
@@ -40,30 +41,16 @@ formulario.addEventListener("submit", (e) => {
     localStorage.setItem("usuario", enJSON);
 
     const mensajeBienvenida = document.getElementById("mensajeBienvenida");
-    mensajeBienvenida.innerHTML= `Bienvenido/a ${nombreUsuario}! \n Que deseas hacer?
+    mensajeBienvenida.innerHTML = `Bienvenido/a ${nombreUsuario}! \n Que deseas hacer?
                                     <nav>
                                         <div>
-                                            <a class="nav-link active items" aria-current="page" href="">Crear Tarea</a>
-                                            <a class="nav-link active items" aria-current="page" href="">Editar Tarea</a>
-                                            <a class="nav-link active items" aria-current="page" href="">Eliminar Tarea</a>
-                                            <a class="nav-link active items" aria-current="page" href="">Ver Lista de Tareas</a>
+                                            <button id="crearTarea">Crear Tarea</button>
+                                            <button id="toDoList">Ver Lista de Tareas</button>
                                         </div>
                                     </nav>`;
 
     formulario.reset();
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

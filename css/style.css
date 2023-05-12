@@ -17,10 +17,18 @@ span {
 }
 
 button {
-    background-color: white;
-    border: 0px;
-    padding-left: 8px;
+    margin: 32px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #515151;
     color: #515151;
+    background-color: white;
+}
+
+button:hover {
+    background-color: #515151;
+    color: white;
+    transition: 0.7s;
 }
 
 form {
@@ -52,7 +60,7 @@ input {
     border: 1px solid #515151;
 }
 
-#botonRegistrar {
+#botonLogIn {
     background-color: white;
     border: 1px solid #515151;
     padding: 8px;
@@ -60,12 +68,18 @@ input {
     height: 100%;
 }
 
-footer {
-    margin-top: 200px;
-    text-align: center;
-    font-size: 10px;
+#botonLogIn:hover {
+    background-color: #515151;
+    color: white;
+    transition: 0.7s;
 }
 
 #mensajeBienvenida {
     text-align: center;
+}
+
+footer {
+    margin-top: 300px;
+    text-align: center;
+    font-size: 10px;
 }
