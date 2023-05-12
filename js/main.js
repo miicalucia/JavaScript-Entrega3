@@ -1,74 +1,82 @@
+class Usuario {
+    constructor(nombre, contraseña) {
+        this.nombre = nombre;
+        this.contraseña = contraseña;
+    }
+}
+
 class Tarea {
-    constructor(nombre, fecha, nota) {
+    constructor(nombre, fecha, notas) {
         this.nombre = nombre;
         this.fecha = fecha;
-        this.nota = nota;
+        this.notas = notas;
     }
 }
-const listado = [];
-const listaDeTareas = document.getElementById("listaDeTareas");
 
+const listaDeUsuarios = [];
+const listaDeTareas = [];
 
-if (localStorage.getItem("tareasPendientes")) {
-    tareasPendientes = JSON.parse(localStorage.getItem("tareasPendientes"));
+const formulario = document.getElementById("login-formulario");
+const botonLogIn = document.getElementById("botonLogIn");
+
+if (localStorage.getItem("usuario")) {
+    usuario = JSON.parse(localStorage.getItem("usuario"));
 }
 
-const formulario = document.getElementById ("login-formulario");
-const usuarioInput = document.getElementById("usuarioInput");
-const passwordInput = document.getElementById("passwordInput");
-const botonRegistrar = document.getElementById("botonRegistrar");
-const usuarios = [];
+formulario.addEventListener("submit", (e) => {
+    e.preventDefault();
 
+    const usuarioInput = document.getElementById("usuarioInput");
+    const contraseñaInput = document.getElementById("contraseñaInput");
+    const nombreUsuario = usuarioInput.value;
 
-const verUsuarios = (nuevoUsuario) => {
-    const fichaNuevoUsuario = document.createElement("div");
-    fichaNuevoUsuario.className = "ficha";
-    fichaNuevoUsuario.innerHTML = `
-                                        <h3>${nuevoUsuario.nombre}</h3>
-                                        <p>Username: ${nuevoUsuario.username}</p>`
+    const usuario = new Usuario(usuarioInput.value, contraseñaInput.value);
 
-    contenedorUsuario.appendChild(fichaNuevoUsuario);
-}
+    listaDeUsuarios.push(usuario);
 
-const mandarDatos = document.getElementById ("login-formulario");
+    console.log(listaDeUsuarios);
 
-mandarDatos.addEventListener ("submit", (e) => {
-    e.preventDefault()
+    const enJSON = JSON.stringify(usuario);
+    localStorage.setItem("usuario", enJSON);
 
-    console.log(e.target.children["usuario"].value);
-    console.log(e.target.children["password"].value);
+    const mensajeBienvenida = document.getElementById("mensajeBienvenida");
+    mensajeBienvenida.innerHTML= `Bienvenido/a ${nombreUsuario}! \n Que deseas hacer?
+                                    <nav>
+                                        <div>
+                                            <a class="nav-link active items" aria-current="page" href="">Crear Tarea</a>
+                                            <a class="nav-link active items" aria-current="page" href="">Editar Tarea</a>
+                                            <a class="nav-link active items" aria-current="page" href="">Eliminar Tarea</a>
+                                            <a class="nav-link active items" aria-current="page" href="">Ver Lista de Tareas</a>
+                                        </div>
+                                    </nav>`;
 
-    const informacion = e.target.children;
-    const nuevoUsuario = {
-        username:informacion["usuario"].value,
-        password:informacion["password"].value,
-    }
-    console.log(nuevoUsuario);
-    usuarios.push(nuevoUsuario);
-
-    const enJson = JSON.stringify(nuevoUsuario);
-    localStorage.setItem("newUser", enJson);
-
-    mandarDatos.reset();
-});
-console.log(usuarios);
-
-const crearTarea = () => {
-    const menu = document.createElement("button");
-    menu.innerHTML = `
-                    <input type="text" id="nombreTarea" placeholder="Nombre de la tarea">
-                    <input type="date" id="fechaTarea" placeholder="Fecha de la tarea">
-                    <input type="text" id="notaTarea" placeholder="Detalles de la tarea">
-                    <button id="guardarTarea">Guardar</button>`
-listaDeTareas.appendChild(menu);
-
-let nuevaTarea = new Tarea(`${nombreTarea},${fechaTarea},${notaTarea}`)
-
-const botonTarea = document.getElementById("guardarTarea");
-botonTarea.addEventListener("click", () => {
-    listado.push(nuevaTarea);
+    formulario.reset();
 })
-}
-console.log(listaDeTareas);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

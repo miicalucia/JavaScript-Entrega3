@@ -61,6 +61,11 @@ input {
 }
 
 footer {
+    margin-top: 200px;
     text-align: center;
     font-size: 10px;
+}
+
+#mensajeBienvenida {
+    text-align: center;
 }
