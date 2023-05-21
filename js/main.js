@@ -1,69 +1,56 @@
-class Usuario {
-    constructor(nombre, contraseña) {
-        this.nombre = nombre;
-        this.contraseña = contraseña;
-    }
-}
-
-/* PARA TP FINAL
 class Tarea {
     constructor(nombre, fecha, notas) {
         this.nombre = nombre;
         this.fecha = fecha;
-        this.notas = notas;
+        this.notas = notas
     }
 }
-const listaDeTareas = [];*/
 
-const listaDeUsuarios = [];
+const listado = [];
 
-const formulario = document.getElementById("login-formulario");
-const botonLogIn = document.getElementById("botonLogIn");
+const formularioTarea = document.getElementById("formularioTarea");
+const inputTarea = document.getElementById("inputTarea");
+const fechaTarea = document.getElementById("fechaTarea");
+const notasTarea = document.getElementById("notasTarea");
+const listaTareas = document.getElementById("listaTareas");
+const agregarTarea = document.getElementById("agregarTarea");
 
-if (localStorage.getItem("usuario")) {
-    usuario = JSON.parse(localStorage.getItem("usuario"));
+function agregarNuevaTarea() {
+    let nombre = inputTarea.value;
+    let fecha = fechaTarea.value;
+    let notas = notasTarea.value;
+    let nuevaTarea = new Tarea(nombre, fecha, notas);
+    listado.push(nuevaTarea);
+
+    if(inputTarea !== '') {
+        const nuevaTarea = document.createElement("li");
+        nuevaTarea.innerText = "inputTarea";
+    }
+
+    const eliminarTarea = document.createElement("button");
+    eliminarTarea.innerText = "Eliminar";
+    
+
+    
 }
 
-formulario.addEventListener("submit", (e) => {
-    e.preventDefault();
+agregarNuevaTarea();
 
-    const usuarioInput = document.getElementById("usuarioInput");
-    const contraseñaInput = document.getElementById("contraseñaInput");
-    const nombreUsuario = usuarioInput.value;
+/*const itemsTareas = () => {
+    listado.forEach(tarea => {
+        const nuevaTarea = document.createElement("li");
+        nuevaTarea.innerHTML = `
+                                <li> ${tarea.nombre} 
+                                <button id="eliminarTarea"> Eliminar </button></li>`
+        listaTareas.appendChild(nuevaTarea);
 
-    const usuario = new Usuario(usuarioInput.value, contraseñaInput.value);
+        //Agregar tareas a la lista:
+        const agregarTarea = document.getElementById("agregarTarea");
+        agregarTarea.addEventListener("click", () => {
+            listaTareas(tarea.nombre);
+        })
+    })
+}
 
-    listaDeUsuarios.push(usuario);
-
-    console.log(listaDeUsuarios);
-
-    const enJSON = JSON.stringify(usuario);
-    localStorage.setItem("usuario", enJSON);
-
-    const mensajeBienvenida = document.getElementById("mensajeBienvenida");
-    mensajeBienvenida.innerHTML = `Bienvenido/a ${nombreUsuario}! \n Que deseas hacer?
-                                    <nav>
-                                        <div>
-                                            <button id="crearTarea">Crear Tarea</button>
-                                            <button id="toDoList">Ver Lista de Tareas</button>
-                                        </div>
-                                    </nav>`;
-
-    formulario.reset();
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+itemsTareas();*/
 

@@ -40,19 +40,8 @@ form {
     align-items: center;
 }
 
-h2 {
-    display: flex;
-    justify-content: center;
-    padding: 16px;
-    font-size: 24px;
-}
-
-label {
-    margin: 16px;
-    font-size: 18px;
-}
-
 input {
+    width: 300px;
     height: 24px;
     margin: 8px;
     padding: 6px;
@@ -60,23 +49,9 @@ input {
     border: 1px solid #515151;
 }
 
-#botonLogIn {
-    background-color: white;
-    border: 1px solid #515151;
-    padding: 8px;
-    color: #515151;
-    height: 100%;
-}
-
-#botonLogIn:hover {
-    background-color: #515151;
-    color: white;
-    transition: 0.7s;
-}
-
-#mensajeBienvenida {
-    text-align: center;
-}
+#fechaTarea {
+    font-family: 'Poppins', sans-serif; 
+} 
 
 footer {
     margin-top: 300px;

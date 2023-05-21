@@ -26,15 +26,14 @@
         </div>
     </nav>
 
-    <form class="login-form" id="login-formulario">
-        <h2>Log in</h2>
-        <label for="">Ingrese su usuario y contraseña </label>
-        <input type="text" placeholder="Usuario" name="usuario" id="usuarioInput" required>
-        <input type="password" placeholder="Contraseña" name="password" id="contraseñaInput" required>
-        <input class="login-form-submitbutton" type="submit" value="Aceptar" id="botonLogIn">
+    <form class="formTarea" id="formularioTarea">
+        <input type="text" id="inputTarea" placeholder="Nueva tarea">
+        <input type="date" id="fechaTarea">
+        <input type="text" id="notasTarea" placeholder="Notas">
+        <button type="submit" id="agregarTarea">Agregar</button>
     </form>
 
-    <h3 id="mensajeBienvenida"></h3>
+    <ul id="listaTareas"></ul>
 
     <footer>
         <p>Página web creada por Micaela Lucia Gomez</p>
