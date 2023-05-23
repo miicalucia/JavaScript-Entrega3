@@ -1,56 +1,136 @@
-class Tarea {
-    constructor(nombre, fecha, notas) {
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.notas = notas
-    }
+//Array de tareas
+const tareas = [];
+
+//LocalStorage
+if (localStorage.getItem("tareas")) {
+    tareas = JSON.parse(localStorage.getItem("tareas"));
 }
 
-const listado = [];
-
+//Modifico el DOM
 const formularioTarea = document.getElementById("formularioTarea");
 const inputTarea = document.getElementById("inputTarea");
-const fechaTarea = document.getElementById("fechaTarea");
-const notasTarea = document.getElementById("notasTarea");
 const listaTareas = document.getElementById("listaTareas");
-const agregarTarea = document.getElementById("agregarTarea");
 
-function agregarNuevaTarea() {
-    let nombre = inputTarea.value;
-    let fecha = fechaTarea.value;
-    let notas = notasTarea.value;
-    let nuevaTarea = new Tarea(nombre, fecha, notas);
-    listado.push(nuevaTarea);
+//Escuchar al formulario
+formularioTarea.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (inputTarea.value !== '') {
+        const nuevaTarea = document.createElement("li")
+        nuevaTarea.innerHTML = `
+                                <span>${inputTarea.value}</span>
+                                <button id="eliminarItem-${inputTarea.value}">Eliminar</button>
+                                <input type="checkbox" name="completa" id="tareaCompletada-${inputTarea.value}">
+                                <label for="tareaCompletada-${inputTarea.value}">Completa</label>
+                                `;
+        listaTareas.appendChild(nuevaTarea);
+        tareas.push(nuevaTarea);
 
-    if(inputTarea !== '') {
-        const nuevaTarea = document.createElement("li");
-        nuevaTarea.innerText = "inputTarea";
+        const botonEliminar = document.getElementById(`eliminarItem-${inputTarea.value}`);
+        botonEliminar.addEventListener('click', () => {
+            eliminarTarea(inputTarea.value);
+        })
     }
+})
 
-    const eliminarTarea = document.createElement("button");
-    eliminarTarea.innerText = "Eliminar";
-    
+const eliminarTarea = () => {
 
+}
+
+
+
+/* 
+function agregarNuevaTarea(tarea) {
+    tareas.push({
+        id: Date.now(),
+        description: tarea,
+        completed: false
+    });
     
 }
 
-agregarNuevaTarea();
+function eliminarTarea(id) {
+    tareas = tareas.filter(tarea => tarea.id !== id);
+}
 
-/*const itemsTareas = () => {
-    listado.forEach(tarea => {
-        const nuevaTarea = document.createElement("li");
-        nuevaTarea.innerHTML = `
-                                <li> ${tarea.nombre} 
-                                <button id="eliminarTarea"> Eliminar </button></li>`
-        listaTareas.appendChild(nuevaTarea);
-
-        //Agregar tareas a la lista:
-        const agregarTarea = document.getElementById("agregarTarea");
-        agregarTarea.addEventListener("click", () => {
-            listaTareas(tarea.nombre);
-        })
+function tareaCompleta(id) {
+    tareas = tareas.map(tarea => {
+        if (tarea.id === id) {
+            tarea.completed = true;
+        }
+        return tarea;
     })
 }
 
-itemsTareas();*/
+formularioTarea.addEventListener('submit', function(e){
+    e.preventDefault();
 
+    const tarea = inputTarea.value;
+    if (tarea !== '') {
+        agregarNuevaTarea(tarea);
+        renderTarea();
+        inputTarea.value = '';
+    }
+})
+
+listaTareas.addEventListener("click", function(e){
+    if (e.target.classList.contains('botonEliminar')) {
+        const tareaId = parseInt(e.target.parentNode.dataset.id);
+        eliminarTarea(tareaId);
+        renderTarea();
+    } else if (e.target.classList.contains('botonCompletado')) {
+        const tareaId = parseInt(e.target.parentNode.dataset.id);
+        tareaCompleta(tareaId);
+        renderTarea();
+    }
+})
+
+function alertaTarea(title, text, icon) {
+    swal({
+        title: 'Tarea',
+        text: 'Tarea completa',
+        icon: 'info',
+        button: 'Aceptar'
+    })
+}
+
+fetch('https://api.example.com/tasks')
+    .then(respuesta => respuesta.json())
+    .then(data => {
+        tarea = data;
+        renderTarea();
+    })
+    .catch(error=> {
+        alertaTarea('Error', 'No se pudo obtener la lista de tareas', 'error')
+    })
+
+function renderTarea() {
+    // Limpiar el contenido actual del listado
+    listaTareas.innerHTML = '';
+      
+    // Recorrer el array de tareas y crear elementos HTML para cada una
+    tareas.forEach(tarea => {
+        const nuevaTarea = document.createElement('li');
+        nuevaTarea.dataset.id = tarea.id;
+      
+        const tareaTexto = document.createElement('span');
+        tareaTexto.textContent = tarea.description;
+      
+        const botonEliminar = document.createElement('button');
+        botonEliminar.textContent = 'Eliminar';
+        botonEliminar.classList.add('botonEliminar');
+      
+        const botonCompletado = document.createElement('button');
+        botonCompletado.textContent = 'Completar';
+        botonCompletado.classList.add('botonCompletado');
+      
+        nuevaTarea.appendChild(tareaTexto);
+        nuevaTarea.appendChild(botonEliminar);
+        nuevaTarea.appendChild(botonCompletado);
+        listaTareas.appendChild(nuevaTarea);
+      
+        // Marcar una tarea como completada si es necesario
+        if (tarea.completed) {
+            nuevaTarea.classList.add('completed');
+            }
+        });
+      }     */
