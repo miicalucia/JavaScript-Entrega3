@@ -29,49 +29,50 @@ agregarNuevaTarea.addEventListener('click', () => {
             background: "white",
             color: "#515151",
         },
-        }).showToast();
+    }).showToast();
 })
 
 //Función agregar Tarea
 const agregarTarea = (valorTarea) => {
     const nuevaTarea = document.createElement("li")
-        nuevaTarea.innerHTML = `
+    nuevaTarea.innerHTML = `
                                 <input type="checkbox" name="completa" id="tareaCompletada-${valorTarea}">
                                 <span>${valorTarea}</span>
                                 <button id="eliminarItem-${valorTarea}">Eliminar</button>
                                 `;
-        listaTareas.appendChild(nuevaTarea);
-        tareas.push(nuevaTarea);
+    listaTareas.appendChild(nuevaTarea);
+    tareas.push(nuevaTarea);
 
-        //LocalStorage
-        localStorage.setItem('tareas', JSON.stringify(tareas));
+    inputTarea.value = '';
 
-        const botonEliminar = document.getElementById(`eliminarItem-${valorTarea}`);
-        botonEliminar.addEventListener('click', () => {
-            eliminarTarea(valorTarea);
-        })
+    //LocalStorage
+    localStorage.setItem('tareas', JSON.stringify(tareas));
+
+    const botonEliminar = document.getElementById(`eliminarItem-${valorTarea}`);
+    botonEliminar.addEventListener('click', () => {
+        eliminarTarea(valorTarea);
+    })
 }
 
 //Función eliminar Tarea
 const eliminarTarea = (valorTarea) => {
     const tareasElementos = Array.from(listaTareas.children);
     const tareaEncontrada = tareasElementos.find(tarea => tarea.querySelector('span').textContent === valorTarea);
-        if (tareaEncontrada) {
-            inputTarea.value = valorTarea;
-            let indice = tareasElementos.indexOf(tareaEncontrada);
-            tareasElementos.splice(indice, 1);
-            listaTareas.removeChild(tareaEncontrada);
-  
-            tareas = tareasElementos;       
+    if (tareaEncontrada) {
+        inputTarea.value = valorTarea;
+        let indice = tareasElementos.indexOf(tareaEncontrada);
+        tareasElementos.splice(indice, 1);
+        listaTareas.removeChild(tareaEncontrada);
+
+        tareas = tareasElementos;
     }
-  };
+};
 
 //Función Tarea completa
 
-//Limpiar input
-
 //Agrego Fetch
 
+//Que no repita la tarea
 
 
 /* 
@@ -119,15 +120,6 @@ listaTareas.addEventListener("click", function(e){
         renderTarea();
     }
 })
-
-function alertaTarea(title, text, icon) {
-    swal({
-        title: 'Tarea',
-        text: 'Tarea completa',
-        icon: 'info',
-        button: 'Aceptar'
-    })
-}
 
 fetch('https://api.example.com/tasks')
     .then(respuesta => respuesta.json())
