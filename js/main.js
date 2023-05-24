@@ -10,6 +10,7 @@ if (localStorage.getItem("tareas")) {
 const formularioTarea = document.getElementById("formularioTarea");
 const inputTarea = document.getElementById("inputTarea");
 const listaTareas = document.getElementById("listaTareas");
+const agregarNuevaTarea = document.getElementById("agregarNuevaTarea");
 
 //Escuchar al formulario
 formularioTarea.addEventListener('submit', (e) => {
@@ -19,6 +20,19 @@ formularioTarea.addEventListener('submit', (e) => {
     }
 })
 
+//Escuchar al botón agregar y agrego librería
+agregarNuevaTarea.addEventListener('click', () => {
+    Toastify({
+        text: "Tarea agregada",
+        duration: 2000,
+        style: {
+            background: "white",
+            color: "#515151",
+        },
+        }).showToast();
+})
+
+//Función agregar Tarea
 const agregarTarea = (valorTarea) => {
     const nuevaTarea = document.createElement("li")
         nuevaTarea.innerHTML = `
@@ -38,6 +52,7 @@ const agregarTarea = (valorTarea) => {
         })
 }
 
+//Función eliminar Tarea
 const eliminarTarea = (valorTarea) => {
     const tareasElementos = Array.from(listaTareas.children);
     const tareaEncontrada = tareasElementos.find(tarea => tarea.querySelector('span').textContent === valorTarea);
@@ -50,6 +65,12 @@ const eliminarTarea = (valorTarea) => {
             tareas = tareasElementos;       
     }
   };
+
+//Función Tarea completa
+
+//Limpiar input
+
+//Agrego Fetch
 
 
 
