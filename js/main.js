@@ -1,5 +1,5 @@
 //Array de tareas
-const tareas = [];
+let tareas = [];
 
 //LocalStorage
 if (localStorage.getItem("tareas")) {
@@ -15,26 +15,41 @@ const listaTareas = document.getElementById("listaTareas");
 formularioTarea.addEventListener('submit', (e) => {
     e.preventDefault();
     if (inputTarea.value !== '') {
-        const nuevaTarea = document.createElement("li")
+        agregarTarea(inputTarea.value)
+    }
+})
+
+const agregarTarea = (valorTarea) => {
+    const nuevaTarea = document.createElement("li")
         nuevaTarea.innerHTML = `
-                                <span>${inputTarea.value}</span>
-                                <button id="eliminarItem-${inputTarea.value}">Eliminar</button>
-                                <input type="checkbox" name="completa" id="tareaCompletada-${inputTarea.value}">
-                                <label for="tareaCompletada-${inputTarea.value}">Completa</label>
+                                <input type="checkbox" name="completa" id="tareaCompletada-${valorTarea}">
+                                <span>${valorTarea}</span>
+                                <button id="eliminarItem-${valorTarea}">Eliminar</button>
                                 `;
         listaTareas.appendChild(nuevaTarea);
         tareas.push(nuevaTarea);
 
-        const botonEliminar = document.getElementById(`eliminarItem-${inputTarea.value}`);
+        //LocalStorage
+        localStorage.setItem('tareas', JSON.stringify(tareas));
+
+        const botonEliminar = document.getElementById(`eliminarItem-${valorTarea}`);
         botonEliminar.addEventListener('click', () => {
-            eliminarTarea(inputTarea.value);
+            eliminarTarea(valorTarea);
         })
-    }
-})
-
-const eliminarTarea = () => {
-
 }
+
+const eliminarTarea = (valorTarea) => {
+    const tareasElementos = Array.from(listaTareas.children);
+    const tareaEncontrada = tareasElementos.find(tarea => tarea.querySelector('span').textContent === valorTarea);
+        if (tareaEncontrada) {
+            inputTarea.value = valorTarea;
+            let indice = tareasElementos.indexOf(tareaEncontrada);
+            tareasElementos.splice(indice, 1);
+            listaTareas.removeChild(tareaEncontrada);
+  
+            tareas = tareasElementos;       
+    }
+  };
 
 
 
