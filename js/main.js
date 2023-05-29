@@ -11,6 +11,7 @@ const formularioTarea = document.getElementById("formularioTarea");
 const inputTarea = document.getElementById("inputTarea");
 const listaTareas = document.getElementById("listaTareas");
 const agregarNuevaTarea = document.getElementById("agregarNuevaTarea");
+const empty = document.querySelector(".empty");
 
 //Escuchar al formulario
 formularioTarea.addEventListener('submit', (e) => {
@@ -22,14 +23,17 @@ formularioTarea.addEventListener('submit', (e) => {
 
 //Escuchar al botón agregar y agrego librería
 agregarNuevaTarea.addEventListener('click', () => {
-    Toastify({
+    if (inputTarea.value !== '') {
+        Toastify({
         text: "Tarea agregada",
         duration: 2000,
         style: {
             background: "white",
             color: "#515151",
         },
-    }).showToast();
+        }).showToast();
+        empty.style.display = "none";
+    }
 })
 
 //Función agregar Tarea
@@ -45,6 +49,7 @@ const agregarTarea = (valorTarea) => {
 
     inputTarea.value = '';
 
+    
     //LocalStorage
     localStorage.setItem('tareas', JSON.stringify(tareas));
 
@@ -66,13 +71,25 @@ const eliminarTarea = (valorTarea) => {
 
         tareas = tareasElementos;
     }
+
+    inputTarea.value = '';
+
+    if (tareas.length === 0) {
+        empty.style.display = "block";
+    }
 };
 
 //Función Tarea completa
+//`<strike>${valorTarea}</strike>`
+
+    
+
 
 //Agrego Fetch
 
 //Que no repita la tarea
+
+
 
 
 /* 
