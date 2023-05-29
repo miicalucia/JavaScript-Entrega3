@@ -1,5 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
+    font-weight: bold;
     color: #515151;
 }
 
@@ -12,17 +13,27 @@ h1 {
     margin: 16px;
 }
 
-span {
+#nuevaTarea {
     color: #515151;
 }
 
+#opciones {
+    font-weight: 300;
+}
+
+#opciones:hover {
+    color: white;
+}
+
 button {
-    margin: 20px;
+    margin: 10px;
     padding: 10px;
     border-radius: 6px;
-    border: 1px solid #515151;
+    border: 0px solid #515151;
     color: #515151;
     background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
 }
 
 button:hover {
@@ -47,6 +58,8 @@ form {
     padding: 6px;
     border-radius: 6px;
     border: 1px solid #515151;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
 }
 
 input {
@@ -67,13 +80,17 @@ li {
     justify-content: space-evenly;
 }
 
+.completada {
+    text-decoration: line-through;
+}
+
 #tareasPendientes {
     text-align: center;
 }
-
 
 footer {
     margin-top: 300px;
     text-align: center;
     font-size: 10px;
+    
 }
