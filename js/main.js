@@ -69,7 +69,7 @@ const eliminarTarea = (valorTarea) => {
 
         tareas = tareasElementos;
     }
-    
+
     if (tareas.length === 0) {
         empty.style.display = "block";
     }
@@ -77,24 +77,25 @@ const eliminarTarea = (valorTarea) => {
 
 //Agrego Fetch
 
-/*const sugerenciasTareas = "json/tareas.json";
+const sugerenciasTareas = "json/tareas.json";
 
 fetch(sugerenciasTareas)
-    .then(response => response.json())
+    .then(respuesta => respuesta.json())
     .then(datos => {
-        listaTareas.innerHTML += `
-                            <h2>Algunas sugerencias</h2>`
         datos.forEach(tarea => {
             listaTareas.innerHTML += `
-                            <input type="checkbox" name="tareaCompleta" id="tareaCompleta">
-                            <label id="nuevaTarea">${tarea.nombre}</label>
-                            <button id="eliminarItem-${tarea.nombre}">
-                            <span class="material-symbols-outlined" id="opciones">
-                                delete
-                            </span>
-                            </button>
-            `;
-        });
-    });
-*/
+                                    <li>
+                                    <input type="checkbox" name="tareaCompleta" id="tareaCompleta">
+                                    <label id="nuevaTarea">${tarea.nombre}</label>
+                                    <button id="eliminarItem-${tarea.nombre}">
+                                    <span class="material-symbols-outlined" id="opciones">
+                                        delete
+                                    </span>
+                                    </button>
+                                    </li>
+                                    `
+            
+        })
+    })
+    .catch(error => console.log(error))
 //Que no repita la tarea

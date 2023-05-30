@@ -81,11 +81,6 @@ li {
     justify-items: center;
 }
 
-#tareaCompleta:checked + li {
-    background-color: #515151;
-    color: white;
-}
-
 #tareasPendientes {
     text-align: center;
 }
