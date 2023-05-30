@@ -75,13 +75,15 @@ li {
     border-radius: 6px;
     border: 1px solid #515151;
     list-style-type: none;
-    display: flex;
-    place-items: center;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
 }
 
-.completada {
-    text-decoration: line-through;
+#tareaCompleta:checked + li {
+    background-color: #515151;
+    color: white;
 }
 
 #tareasPendientes {
