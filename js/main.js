@@ -12,7 +12,7 @@ let valorTarea = inputTarea.value;
 
 //Escuchar al formulario
 formularioTarea.addEventListener('submit', (e) => {
-    e.preventDefault();  
+    e.preventDefault();
     if (inputTarea.value !== '') {
         agregarTarea(inputTarea.value)
     }
@@ -31,7 +31,7 @@ const agregarTarea = (valorTarea) => {
                                 </span>
                             </button>
                             `
-    ;
+        ;
 
     //Agrego librería
     const tareaExistente = tareas.find(nuevaTarea => nuevaTarea.querySelector('label').textContent.toLowerCase() === valorTarea.toLowerCase());
@@ -93,16 +93,20 @@ fetch(sugerenciasTareas)
     .then(respuesta => respuesta.json())
     .then(datos => {
         datos.forEach(tarea => {
-            listaSugerencias.innerHTML += `
-            <button id="sugerenciaTarea"><label id="nuevaTarea">${tarea.nombre}
-                              
-                                    </label></button>
-                                    `
-        })
-        const sugerenciaTarea = document.getElementById("sugerenciaTarea");
-        sugerenciaTarea.addEventListener("click", () => {
-            agregarTarea(valorTarea);
-        })
+            const divSugerenciaTarea = document.createElement("div");
+            const botonSugerenciaTarea = document.createElement("button");
+
+            divSugerenciaTarea.id = "sugerenciaTarea";
+            botonSugerenciaTarea.id = `btn-${tarea.nombre}`;
+            botonSugerenciaTarea.textContent = tarea.nombre;
+
+            divSugerenciaTarea.appendChild(botonSugerenciaTarea);
+            listaSugerencias.appendChild(divSugerenciaTarea);
+
+            const sugerenciaTarea = document.getElementById(`btn-${tarea.nombre}`);
+            sugerenciaTarea.addEventListener("click", () => {
+                agregarTarea(tarea.nombre);
+            });
+        });
     })
-    .catch(error => console.log(error))
-      /* <button id="sugerenciaTarea">${tarea.nombre}</button> */
+    .catch(error => console.log(error));
