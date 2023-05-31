@@ -1,7 +1,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    color: #515151;
+    color: #432349;
 }
 
 * {
@@ -14,7 +14,7 @@ h1 {
 }
 
 #nuevaTarea {
-    color: #515151;
+    color: #432349;
 }
 
 #opciones {
@@ -30,14 +30,14 @@ button {
     padding: 10px;
     border-radius: 6px;
     border: 0px;
-    color: #515151;
+    color: #432349;
     background-color: white;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 }
 
 button:hover {
-    background-color: #515151;
+    background-color: #432349;
     color: white;
     transition: 1s;
 }
@@ -57,7 +57,7 @@ form {
     margin: 8px;
     padding: 6px;
     border-radius: 6px;
-    border: 1px solid #515151;
+    border: 1px solid #432349;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 }
@@ -66,14 +66,14 @@ input {
     margin: 8px;
     padding: 6px;
     border-radius: 6px;
-    border: 1px solid #515151;
+    border: 1px solid #432349;
 }
 
 li {
     width: 70%;
     margin: 10px auto;
     border-radius: 6px;
-    border: 1px solid #515151;
+    border: 1px solid #432349;
     list-style-type: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -88,14 +88,16 @@ li {
 #sugerencias {
     margin-top: 200px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; 
+    place-items: center;
 }
 
 h2 {
+    margin: 16px;
     font-size: 18px;
     text-align: center;
     opacity: 70%;
+
 }
 
 #listaSugerencias {
@@ -104,11 +106,21 @@ h2 {
 }
 
 #sugerenciaTarea {
-    opacity: 70%;
+    margin: 8px;
+    opacity: 70%;    
 }
  
 #sugerenciaTarea:hover {
     opacity: 100%;
+}
+
+#sugerenciaTarea button{
+    margin: 0px;
+    padding: 0px 8px;
+    height: 32px;
+    border-radius: 6px;
+    background-color: #432349;
+    color: white;
 }
 
 footer {

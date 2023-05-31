@@ -40,8 +40,9 @@ const agregarTarea = (valorTarea) => {
             text: "La tarea ya existe",
             duration: 2000,
             style: {
-                background: "white",
-                color: "#515151",
+                background: "#693772",
+                color: "white",
+                opacity: 70,
             },
         }).showToast();
         return;
@@ -50,8 +51,9 @@ const agregarTarea = (valorTarea) => {
             text: "Tarea agregada",
             duration: 2000,
             style: {
-                background: "white",
-                color: "#515151",
+                background: "#693772",
+                color: "white",
+                opacity: 70,
             },
         }).showToast();
         empty.style.display = "none";
