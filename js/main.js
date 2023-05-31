@@ -8,27 +8,13 @@ const listaTareas = document.getElementById("listaTareas");
 const agregarNuevaTarea = document.getElementById("agregarNuevaTarea");
 const empty = document.querySelector(".empty");
 
+let valorTarea = inputTarea.value;
+
 //Escuchar al formulario
 formularioTarea.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let valorTarea = inputTarea.value;
-    if (valorTarea !== '') {
-        agregarTarea(valorTarea)
-    }
-})
-
-//Escuchar al botón agregar y agrego librería
-agregarNuevaTarea.addEventListener('click', () => {
+    e.preventDefault();  
     if (inputTarea.value !== '') {
-        Toastify({
-            text: "Tarea agregada",
-            duration: 2000,
-            style: {
-                background: "white",
-                color: "#515151",
-            },
-        }).showToast();
-        empty.style.display = "none";
+        agregarTarea(inputTarea.value)
     }
 })
 
@@ -45,7 +31,31 @@ const agregarTarea = (valorTarea) => {
                                 </span>
                             </button>
                             `
-        ;
+    ;
+
+    //Agrego librería
+    const tareaExistente = tareas.find(nuevaTarea => nuevaTarea.querySelector('label').textContent.toLowerCase() === valorTarea.toLowerCase());
+    if (tareaExistente) {
+        Toastify({
+            text: "La tarea ya existe",
+            duration: 2000,
+            style: {
+                background: "white",
+                color: "#515151",
+            },
+        }).showToast();
+        return;
+    } else {
+        Toastify({
+            text: "Tarea agregada",
+            duration: 2000,
+            style: {
+                background: "white",
+                color: "#515151",
+            },
+        }).showToast();
+        empty.style.display = "none";
+    }
 
     listaTareas.appendChild(nuevaTarea);
     tareas.push(nuevaTarea);
@@ -75,27 +85,24 @@ const eliminarTarea = (valorTarea) => {
     }
 };
 
-//Agrego Fetch
-
+//Agrego Fetch con Rutas Relativas
+const listaSugerencias = document.getElementById("listaSugerencias");
 const sugerenciasTareas = "json/tareas.json";
 
 fetch(sugerenciasTareas)
     .then(respuesta => respuesta.json())
     .then(datos => {
         datos.forEach(tarea => {
-            listaTareas.innerHTML += `
-                                    <li>
-                                    <input type="checkbox" name="tareaCompleta" id="tareaCompleta">
-                                    <label id="nuevaTarea">${tarea.nombre}</label>
-                                    <button id="eliminarItem-${tarea.nombre}">
-                                    <span class="material-symbols-outlined" id="opciones">
-                                        delete
-                                    </span>
-                                    </button>
-                                    </li>
+            listaSugerencias.innerHTML += `
+            <button id="sugerenciaTarea"><label id="nuevaTarea">${tarea.nombre}
+                              
+                                    </label></button>
                                     `
-            
+        })
+        const sugerenciaTarea = document.getElementById("sugerenciaTarea");
+        sugerenciaTarea.addEventListener("click", () => {
+            agregarTarea(valorTarea);
         })
     })
     .catch(error => console.log(error))
-//Que no repita la tarea
+      /* <button id="sugerenciaTarea">${tarea.nombre}</button> */
